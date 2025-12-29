@@ -236,6 +236,20 @@ class RecoveryService {
   }
 
   /**
+   * Get recovery history (called from routes, async operation)
+   */
+  async getRecoveryHistory(containerName) {
+    try {
+      // Use persistence service to get history
+      const persistenceService = require('./persistence.service');
+      return await persistenceService.getRecoveryHistory(containerName);
+    } catch (error) {
+      logger.error(`Failed to get recovery history for ${containerName}`, error);
+      return [];
+    }
+  }
+
+  /**
    * Calculate SLI metrics (Service Level Indicators)
    */
   calculateSLIMetrics(containerName) {
