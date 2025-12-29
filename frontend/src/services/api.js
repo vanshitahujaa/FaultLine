@@ -6,7 +6,8 @@ const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  timeout: 600000 // 10 minute timeout for builds
 });
 
 export const apiService = {
@@ -16,6 +17,9 @@ export const apiService = {
   // Deployment
   deployContainer: (image, containerName) =>
     api.post('/deploy', { image, containerName }),
+
+  deployFromGitHub: (repoUrl, containerName, branch = 'main') =>
+    api.post('/deploy-from-github', { repoUrl, containerName, branch }),
 
   // Containers
   listContainers: () => api.get('/containers'),

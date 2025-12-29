@@ -7,6 +7,7 @@ const express = require('express');
 const router = express.Router();
 const dockerService = require('../services/docker.service');
 const failureService = require('../services/failure.service');
+const githubService = require('../services/github.service');
 const logger = require('../utils/logger');
 
 /**
@@ -218,6 +219,78 @@ router.get('/timelines', async (req, res) => {
     logger.error('Failed to get timelines', error);
     res.status(500).json({
       error: 'Failed to retrieve timelines',
+      details: error.message
+    });
+  }
+});
+
+/**
+ * Deploy from GitHub repository
+ * POST /deploy-from-github
+ * Body: { repoUrl, containerName, branch }
+ * 
+ * Workflow: Clone → Detect Dockerfile → Build Image → Create Container
+ */
+router.post('/deploy-from-github', async (req, res) => {
+  try {
+    const { repoUrl, containerName, branch = 'main' } = req.body;
+
+    if (!repoUrl || !containerName) {
+      return res.status(400).json({
+        error: 'Missing required fields: repoUrl, containerName'
+      });
+    }
+
+    // Check if container already exists
+    const existingContainer = await dockerService.getContainerByName(containerName);
+    if (existingContainer) {
+      return res.status(409).json({
+        error: 'Container name already exists',
+        container: containerName,
+        message: `A container named "${containerName}" is already running or exists`
+      });
+    }
+
+    // Step 1: Deploy from GitHub (clone + build)
+    res.status(202).json({
+      status: 'processing',
+      message: 'Starting GitHub deployment workflow...',
+      steps: ['cloning', 'detecting', 'building', 'deploying']
+    });
+
+    // Process in background (don't wait for build)
+    (async () => {
+      try {
+        logger.info(`Starting GitHub deployment: ${repoUrl} → ${containerName}`);
+
+        // Deploy from GitHub
+        const githubResult = await githubService.deployFromGitHub(repoUrl, containerName, branch);
+
+        // Create and start container from built image
+        logger.info(`Creating container from built image: ${githubResult.imageName}`);
+        const container = await dockerService.createContainer(githubResult.imageName, containerName);
+
+        logger.info(`Container ${containerName} deployed successfully from GitHub`);
+        
+        // Record in timeline
+        await failureService.recordGitHubDeployment(containerName, {
+          repoUrl,
+          branch,
+          imageName: githubResult.imageName,
+          deploymentTime: new Date(),
+          buildLog: githubResult.buildLog
+        });
+
+      } catch (error) {
+        logger.error(`GitHub deployment failed for ${containerName}`, error);
+        // Could send webhook/notification here for real-time feedback
+      }
+    })();
+
+  } catch (error) {
+    logger.error('GitHub deployment request failed', error);
+    res.status(500).json({
+      error: 'GitHub deployment failed',
       details: error.message
     });
   }

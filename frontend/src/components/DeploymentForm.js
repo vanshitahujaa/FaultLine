@@ -11,12 +11,14 @@ function DeploymentForm({ onSuccess }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [buildStatus, setBuildStatus] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     setSuccess(null);
+    setBuildStatus(null);
 
     try {
       if (deployMode === 'image') {
@@ -26,16 +28,27 @@ function DeploymentForm({ onSuccess }) {
         setImage('nginx:latest');
         setContainerName('');
       } else {
-        // Deploy from GitHub (future enhancement)
-        setError('GitHub deployment coming soon! Clone repo → build Dockerfile → deploy');
-        console.log('GitHub deployment:', { githubRepo, githubBranch, containerName });
+        // Deploy from GitHub
+        setBuildStatus('🔄 Building image from GitHub repository... This may take a few minutes.');
+        const response = await apiService.deployFromGitHub(githubRepo, containerName, githubBranch);
+        
+        setSuccess(`✅ GitHub deployment started! Building image from ${githubRepo}. Watch logs for progress.`);
+        setBuildStatus('🔨 Building Docker image from Dockerfile...');
+        
+        setGithubRepo('');
+        setGithubBranch('main');
+        setContainerName('');
       }
       
       onSuccess();
-      setTimeout(() => setSuccess(null), 5000);
+      setTimeout(() => {
+        setSuccess(null);
+        setBuildStatus(null);
+      }, 8000);
     } catch (err) {
       const errorMsg = err.response?.data?.message || 
                        err.response?.data?.error || 
+                       err.message ||
                        'Deployment failed';
       setError(errorMsg);
     } finally {
@@ -47,6 +60,7 @@ function DeploymentForm({ onSuccess }) {
     <form onSubmit={handleSubmit} className="form">
       {error && <div className="form-error">❌ {error}</div>}
       {success && <div className="form-success">✅ {success}</div>}
+      {buildStatus && <div className="form-status">⏳ {buildStatus}</div>}
 
       {/* Deployment Mode Selector */}
       <div className="mode-selector">

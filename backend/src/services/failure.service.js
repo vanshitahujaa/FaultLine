@@ -245,6 +245,40 @@ class FailureService {
     
     logger.debug(`Failure event recorded for ${containerName}`, event);
   }
+
+  /**
+   * Record GitHub deployment event
+   */
+  async recordGitHubDeployment(containerName, deploymentData) {
+    try {
+      logger.info(`Recording GitHub deployment for ${containerName}`);
+      
+      const event = {
+        timestamp: new Date().toISOString(),
+        type: 'github-deployment',
+        status: 'success',
+        metadata: {
+          repoUrl: deploymentData.repoUrl,
+          branch: deploymentData.branch,
+          imageName: deploymentData.imageName,
+          buildLog: deploymentData.buildLog
+        }
+      };
+
+      // Initialize timeline if not exists
+      if (!this.failureTimelines.has(containerName)) {
+        this.failureTimelines.set(containerName, []);
+      }
+
+      this.failureTimelines.get(containerName).push(event);
+
+      // Persist to disk
+      await persistenceService.appendEvent(containerName, event);
+      logger.info(`GitHub deployment recorded for ${containerName}`);
+    } catch (error) {
+      logger.error(`Failed to record GitHub deployment for ${containerName}`, error);
+    }
+  }
 }
 
 module.exports = new FailureService();
