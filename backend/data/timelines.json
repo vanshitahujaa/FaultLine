@@ -227,6 +227,46 @@
         "memoryLimit": "512m",
         "duration": 30000
       }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:46.238Z",
+      "type": "latency",
+      "status": "recovered",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:16.238Z",
+        "recoveryTime": "2025-12-29T18:53:46.238Z",
+        "recoveryDurationMs": 30000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:46.270Z",
+      "type": "memory",
+      "status": "recovered",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:16.262Z",
+        "recoveryTime": "2025-12-29T18:53:46.270Z",
+        "recoveryDurationMs": 30000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:49.327Z",
+      "type": "latency",
+      "status": "recovered",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:19.325Z",
+        "recoveryTime": "2025-12-29T18:53:49.327Z",
+        "recoveryDurationMs": 30000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:49.337Z",
+      "type": "memory",
+      "status": "recovered",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:19.336Z",
+        "recoveryTime": "2025-12-29T18:53:49.337Z",
+        "recoveryDurationMs": 30000
+      }
     }
   ]
 }

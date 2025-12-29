@@ -25,8 +25,14 @@ async function startServer() {
       logger.info('  GET    /api/logs/:containerName - Get container logs');
       logger.info('  POST   /api/failures/kill - Inject kill failure');
       logger.info('  POST   /api/failures/latency - Inject latency failure');
+      logger.info('  POST   /api/failures/memory - Inject memory failure');
       logger.info('  GET    /api/timeline/:containerName - Get recovery timeline');
       logger.info('  GET    /api/timelines - Get all timelines');
+      logger.info('  POST   /api/pipeline/execute - Execute CI/CD pipeline');
+      logger.info('  GET    /api/pipeline/logs/:containerName - Get pipeline logs');
+      logger.info('  POST   /api/recovery/start - Start auto-recovery');
+      logger.info('  GET    /api/recovery/metrics/:containerName - Get recovery metrics');
+      logger.info('  GET    /api/report/monitoring/:containerName - Get monitoring report');
       logger.info('  GET    /ping - Health check');
     });
 

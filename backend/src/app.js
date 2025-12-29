@@ -6,6 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('./utils/logger');
 const deployRoutes = require('./routes/deploy.routes');
+const pipelineRoutes = require('./routes/pipeline.routes');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api', deployRoutes);
+app.use('/api', pipelineRoutes);
 
 // Health check endpoint
 app.get('/ping', (req, res) => {

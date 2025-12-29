@@ -98,6 +98,102 @@ class PersistenceService {
   }
 
   /**
+   * Record CI/CD pipeline execution
+   */
+  async recordPipelineExecution(containerName, pipelineData) {
+    try {
+      const timelines = await this.loadTimelines();
+      if (!timelines[containerName]) {
+        timelines[containerName] = [];
+      }
+
+      timelines[containerName].push({
+        type: 'pipeline',
+        timestamp: new Date().toISOString(),
+        ...pipelineData
+      });
+
+      await this.saveTimelines(timelines);
+      logger.info(`Pipeline execution recorded for ${containerName}`);
+    } catch (error) {
+      logger.error(`Failed to record pipeline execution for ${containerName}`, error);
+    }
+  }
+
+  /**
+   * Record recovery attempt
+   */
+  async recordRecoveryAttempt(containerName, recoveryData) {
+    try {
+      const timelines = await this.loadTimelines();
+      if (!timelines[containerName]) {
+        timelines[containerName] = [];
+      }
+
+      timelines[containerName].push({
+        type: 'recovery',
+        timestamp: new Date().toISOString(),
+        ...recoveryData
+      });
+
+      await this.saveTimelines(timelines);
+      logger.info(`Recovery attempt recorded for ${containerName}`);
+    } catch (error) {
+      logger.error(`Failed to record recovery attempt for ${containerName}`, error);
+    }
+  }
+
+  /**
+   * Record recovery metric
+   */
+  async recordRecoveryMetric(containerName, metric) {
+    try {
+      const timelines = await this.loadTimelines();
+      if (!timelines[containerName]) {
+        timelines[containerName] = [];
+      }
+
+      timelines[containerName].push({
+        type: 'metric',
+        timestamp: new Date().toISOString(),
+        ...metric
+      });
+
+      await this.saveTimelines(timelines);
+    } catch (error) {
+      logger.error(`Failed to record recovery metric for ${containerName}`, error);
+    }
+  }
+
+  /**
+   * Get pipeline history for a container
+   */
+  async getPipelineHistory(containerName) {
+    try {
+      const timelines = await this.loadTimelines();
+      const events = timelines[containerName] || [];
+      return events.filter(e => e.type === 'pipeline');
+    } catch (error) {
+      logger.error(`Failed to get pipeline history for ${containerName}`, error);
+      return [];
+    }
+  }
+
+  /**
+   * Get recovery history for a container
+   */
+  async getRecoveryHistory(containerName) {
+    try {
+      const timelines = await this.loadTimelines();
+      const events = timelines[containerName] || [];
+      return events.filter(e => e.type === 'recovery' || e.type === 'metric');
+    } catch (error) {
+      logger.error(`Failed to get recovery history for ${containerName}`, error);
+      return [];
+    }
+  }
+
+  /**
    * Get the path to the timelines file
    */
   getTimelinesPath() {
