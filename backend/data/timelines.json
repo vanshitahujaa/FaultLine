@@ -16,5 +16,217 @@
         "error": "(HTTP code 301) unexpected -  "
       }
     }
+  ],
+  "/my-app12": [
+    {
+      "timestamp": "2025-12-29T18:43:42.683Z",
+      "type": "kill",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:43:42.683Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:43:42.711Z",
+      "type": "kill",
+      "status": "failed",
+      "metadata": {
+        "error": "(HTTP code 301) unexpected -  "
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:45:25.111Z",
+      "type": "kill",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:45:25.111Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:45:25.220Z",
+      "type": "kill",
+      "status": "failed",
+      "metadata": {
+        "error": "(HTTP code 301) unexpected -  "
+      }
+    }
+  ],
+  "my-app12": [
+    {
+      "timestamp": "2025-12-29T18:51:42.265Z",
+      "type": "kill",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:51:42.265Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:51:42.407Z",
+      "type": "kill",
+      "status": "executed",
+      "metadata": {
+        "failureTime": "2025-12-29T18:51:42.265Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:52:31.979Z",
+      "type": "kill",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:52:31.979Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:52:32.988Z",
+      "type": "kill",
+      "status": "failed",
+      "metadata": {
+        "error": "(HTTP code 409) unexpected - cannot kill container: my-app12: container 270157c29900aab4a6a19c0253a4e89a79faf4db404a02e7ba566eaf81d2f030 is not running "
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:52:33.006Z",
+      "type": "memory",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:52:33.006Z",
+        "memoryLimit": "256m",
+        "duration": 60000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:33.007Z",
+      "type": "memory",
+      "status": "recovered",
+      "metadata": {
+        "failureTime": "2025-12-29T18:52:33.006Z",
+        "recoveryTime": "2025-12-29T18:53:33.007Z",
+        "recoveryDurationMs": 60000
+      }
+    }
+  ],
+  "test-nginx": [
+    {
+      "timestamp": "2025-12-29T18:51:51.262Z",
+      "type": "latency",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:51:51.262Z",
+        "latencyMs": 500,
+        "duration": 30000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:52:32.998Z",
+      "type": "latency",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:52:32.998Z",
+        "latencyMs": 800,
+        "duration": 60000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:52:39.421Z",
+      "type": "kill",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:52:39.421Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:52:39.570Z",
+      "type": "kill",
+      "status": "executed",
+      "metadata": {
+        "failureTime": "2025-12-29T18:52:39.421Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:32.999Z",
+      "type": "latency",
+      "status": "recovered",
+      "metadata": {
+        "failureTime": "2025-12-29T18:52:32.998Z",
+        "recoveryTime": "2025-12-29T18:53:32.999Z",
+        "recoveryDurationMs": 60000
+      }
+    }
+  ],
+  "test-app1": [
+    {
+      "timestamp": "2025-12-29T18:53:13.918Z",
+      "type": "kill",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:13.918Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:14.158Z",
+      "type": "kill",
+      "status": "executed",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:13.918Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:17.170Z",
+      "type": "kill",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:17.170Z"
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:17.277Z",
+      "type": "kill",
+      "status": "failed",
+      "metadata": {
+        "error": "(HTTP code 409) unexpected - cannot kill container: test-app1: container a4fabcb849ae2a2fb81cd44db5c1326cd64a9deb3f3f9abaf2bd58bedd24c75d is not running "
+      }
+    }
+  ],
+  "test-app2": [
+    {
+      "timestamp": "2025-12-29T18:53:16.238Z",
+      "type": "latency",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:16.238Z",
+        "latencyMs": 500,
+        "duration": 30000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:16.262Z",
+      "type": "memory",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:16.262Z",
+        "memoryLimit": "512m",
+        "duration": 30000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:19.325Z",
+      "type": "latency",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:19.325Z",
+        "latencyMs": 500,
+        "duration": 30000
+      }
+    },
+    {
+      "timestamp": "2025-12-29T18:53:19.336Z",
+      "type": "memory",
+      "status": "scheduled",
+      "metadata": {
+        "failureTime": "2025-12-29T18:53:19.336Z",
+        "memoryLimit": "512m",
+        "duration": 30000
+      }
+    }
   ]
 }

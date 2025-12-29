@@ -145,7 +145,7 @@ class DockerService {
       const containers = await docker.listContainers({ all });
       return containers.map(c => ({
         id: c.Id,
-        names: c.Names,
+        names: c.Names.map(name => name.startsWith('/') ? name.substring(1) : name),
         image: c.Image,
         status: c.Status,
         state: c.State

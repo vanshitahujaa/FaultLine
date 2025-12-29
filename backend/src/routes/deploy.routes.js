@@ -182,6 +182,33 @@ router.post('/failures/latency', async (req, res) => {
 });
 
 /**
+ * Inject memory pressure failure
+ * POST /failures/memory
+ * Body: { containerName, memoryLimit, duration }
+ */
+router.post('/failures/memory', async (req, res) => {
+  try {
+    const { containerName, memoryLimit = '256m', duration = 60000 } = req.body;
+
+    if (!containerName) {
+      return res.status(400).json({
+        error: 'Missing required field: containerName'
+      });
+    }
+
+    const result = await failureService.injectMemoryFailure(containerName, memoryLimit, duration);
+
+    res.status(202).json(result);
+  } catch (error) {
+    logger.error('Failed to inject memory failure', error);
+    res.status(500).json({
+      error: 'Failed to inject failure',
+      details: error.message
+    });
+  }
+});
+
+/**
  * Get recovery timeline
  * GET /timeline/:containerName
  */

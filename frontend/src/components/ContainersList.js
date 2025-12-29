@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { apiService } from '../services/api';
 import FailureInjector from './FailureInjector';
+import { normalizeContainerName, getContainerDisplayName } from '../utils/containerUtils';
 import '../styles/containers.css';
 
 function ContainersList({ containers, selectedContainer, onSelect }) {
@@ -17,41 +18,44 @@ function ContainersList({ containers, selectedContainer, onSelect }) {
 
   return (
     <div className="containers-list">
-      {containers.map((container) => (
-        <div key={container.id} className="container-card">
-          <div
-            className="container-header"
-            onClick={() => toggleExpand(container.names?.[0] || container.id)}
-          >
-            <div className="container-info">
-              <h3>{container.names?.[0]?.replace('/', '') || 'Unknown'}</h3>
-              <p className="text-muted">{container.image}</p>
-            </div>
-            <span className={`status-badge ${container.state}`}>
-              {container.state || 'unknown'}
-            </span>
-          </div>
-
-          {expandedContainer === (container.names?.[0]?.replace('/', '') || container.id) && (
-            <div className="container-details">
-              <div className="details-grid">
-                <div className="detail-item">
-                  <span className="label">ID</span>
-                  <span className="value">{container.id.substring(0, 12)}</span>
-                </div>
-                <div className="detail-item">
-                  <span className="label">Status</span>
-                  <span className="value">{container.status}</span>
-                </div>
+      {containers.map((container) => {
+        const displayName = getContainerDisplayName(container);
+        return (
+          <div key={container.id} className="container-card">
+            <div
+              className="container-header"
+              onClick={() => toggleExpand(displayName)}
+            >
+              <div className="container-info">
+                <h3>{displayName}</h3>
+                <p className="text-muted">{container.image}</p>
               </div>
-
-              <FailureInjector
-                containerName={container.names?.[0]?.replace('/', '') || container.id}
-              />
+              <span className={`status-badge ${container.state}`}>
+                {container.state || 'unknown'}
+              </span>
             </div>
-          )}
-        </div>
-      ))}
+
+            {expandedContainer === displayName && (
+              <div className="container-details">
+                <div className="details-grid">
+                  <div className="detail-item">
+                    <span className="label">ID</span>
+                    <span className="value">{container.id.substring(0, 12)}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="label">Status</span>
+                    <span className="value">{container.status}</span>
+                  </div>
+                </div>
+
+                <FailureInjector
+                  containerName={displayName}
+                />
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
