@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: faultline-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - HOST=0.0.0.0
+      - DEBUG=false
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - faultline-network
+    restart: unless-stopped
+    command: npm run dev
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: faultline-frontend
+    ports:
+      - "3001:3001"
+    environment:
+      - REACT_APP_API_URL=http://backend:3000/api
+    depends_on:
+      - backend
+    networks:
+      - faultline-network
+    restart: unless-stopped
+
+networks:
+  faultline-network:
+    driver: bridge

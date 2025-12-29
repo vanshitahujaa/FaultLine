@@ -16,6 +16,15 @@ Most developers learn how to build features. **Faultline** is built to study how
 - 💥 Injects controlled failures (crash, latency, memory)
 - 📈 Measures and visualizes recovery behavior
 
+## How It Works
+
+- **Failure Triggering**: Intentional container kills via API
+- **Health Detection**: Polls container status every 2 seconds
+- **Recovery Definition**: 10 continuous seconds of healthy status = RECOVERED
+- **Metrics Captured**: failure_time, recovery_time, recovery_duration (milliseconds)
+- **Data Persistence**: Timelines saved to JSON, survive server restarts
+- **Guardrails**: Prevents duplicate container names (409 Conflict)
+
 ## System Architecture
 
 Faultline follows a **control-plane + runtime architecture**:
@@ -65,6 +74,40 @@ Backend → Frontend Dashboard
 - **Containerization**: Docker
 - **CI/CD**: GitHub Actions
 
+## Project Structure
+
+```
+FaultLine/
+│
+├── backend/
+│   ├── src/
+│   │   ├── app.js
+│   │   ├── server.js
+│   │   ├── routes/
+│   │   │   └── deploy.routes.js
+│   │   ├── services/
+│   │   │   ├── docker.service.js
+│   │   │   └── failure.service.js
+│   │   └── utils/
+│   │       └── logger.js
+│   │
+│   ├── package.json
+│   └── Dockerfile
+│
+├── frontend/          (coming soon)
+│
+├── README.md
+└── LICENSE
+```
+
+## V1 Capabilities
+
+- ✨ Deploy a Dockerized app
+- 🏥 Track container health
+- 💀 Kill container manually
+- 🔄 Auto-restart container
+- 📊 Show recovery timeline
+
 ## Scope
 
 - Single-node deployment
@@ -73,8 +116,8 @@ Backend → Frontend Dashboard
 - Learning and demonstration system (not a customer-facing SaaS)
 
 ## License
-MIT
 
+MIT
 
 ## Status
 

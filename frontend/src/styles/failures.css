@@ -1,0 +1,147 @@
+.failure-injector {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.error-message {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.success-message {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid #22c55e;
+  color: #86efac;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.failure-group {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.failure-group h4 {
+  margin: 0 0 0.5rem 0;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.failure-group .description {
+  margin: 0 0 1rem 0;
+  color: #999999;
+  font-size: 0.8rem;
+}
+
+.control-group {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.control-group label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #cccccc;
+  font-size: 0.85rem;
+  flex: 1;
+}
+
+.control-group input[type="number"],
+.control-group input[type="range"],
+.control-group select {
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #444444;
+  color: #00ff00;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-family: 'Monaco', monospace;
+}
+
+.control-group input[type="range"] {
+  flex: 1;
+}
+
+.control-group input[type="number"]:disabled,
+.control-group input[type="range"]:disabled,
+.control-group select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.control-group select {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.control-group select option {
+  background: #1a1a1a;
+  color: #00ff00;
+}
+
+.value-display {
+  color: #00ff00;
+  font-weight: bold;
+  font-family: 'Monaco', monospace;
+  min-width: 80px;
+  text-align: right;
+}
+
+button[class^="btn-"] {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.btn-kill {
+  background: rgba(239, 68, 68, 0.8);
+  color: #ffffff;
+  border: 1px solid #ef4444;
+}
+
+.btn-kill:hover:not(:disabled) {
+  background: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+.btn-latency {
+  background: rgba(249, 115, 22, 0.8);
+  color: #ffffff;
+  border: 1px solid #f97316;
+}
+
+.btn-latency:hover:not(:disabled) {
+  background: #f97316;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+}
+
+.btn-memory {
+  background: rgba(168, 85, 247, 0.8);
+  color: #ffffff;
+  border: 1px solid #a855f7;
+}
+
+.btn-memory:hover:not(:disabled) {
+  background: #a855f7;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+button[class^="btn-"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
