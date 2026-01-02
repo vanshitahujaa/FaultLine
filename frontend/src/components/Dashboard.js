@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { apiService } from '../services/api';
 import DeploymentForm from './DeploymentForm';
 import ContainersList from './ContainersList';
-import FailureInjector from './FailureInjector';
+import F              <div className="logs-header">
+                <button onClick={loadLogs} className="btn-secondary btn-sm">
+                  {logsLoading ? 'Refreshing...' : 'Refresh'}
+                </button>
+                <span className="log-count">{Array.isArray(logs) ? logs.length : 0} lines</span>
+              </div>Injector from './FailureInjector';
 import Timeline from './Timeline';
 import '../styles/dashboard.css';
 
@@ -90,9 +95,12 @@ function Dashboard() {
     setLogsLoading(true);
     try {
       const response = await apiService.getContainerLogs(selectedContainer, 100);
-      setLogs(response.data.logs || []);
+      const logsData = response.data?.logs || response.logs || [];
+      // Ensure logs is an array
+      setLogs(Array.isArray(logsData) ? logsData : []);
     } catch (err) {
       console.error('Failed to load logs:', err);
+      setLogs([]); // Reset to empty array on error
     } finally {
       setLogsLoading(false);
     }
@@ -199,10 +207,10 @@ function Dashboard() {
                 <button onClick={loadLogs} className="btn-secondary">
                   {logsLoading ? 'Refreshing...' : 'Refresh'}
                 </button>
-                <span className="log-count">{logs.length} lines</span>
+                <span className="log-count">{Array.isArray(logs) ? logs.length : 0} lines</span>
               </div>
               <div className="logs-container">
-                {logs.length === 0 ? (
+                {!logs || logs.length === 0 ? (
                   <p className="text-muted">No logs available</p>
                 ) : (
                   logs.map((line, idx) => (

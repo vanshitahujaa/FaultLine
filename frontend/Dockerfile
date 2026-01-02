@@ -1,7 +1,8 @@
 # FaultLine Frontend Docker Image
+# Production React app with Nginx reverse proxy
 
-# Build stage
-FROM node:18-alpine as builder
+# Build stage: Compile React app
+FROM node:20-alpine as builder
 
 WORKDIR /app
 
@@ -11,30 +12,53 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy source code
+# Copy source code and public assets
 COPY public ./public
 COPY src ./src
 
-# Build React app
+# Build optimized production React app
 RUN npm run build
 
-# Production stage
-FROM node:18-alpine
+# Production stage: Serve with Nginx
+FROM nginx:alpine
 
-WORKDIR /app
+WORKDIR /usr/share/nginx/html
 
-# Install serve to run production build
-RUN npm install -g serve
+# Copy Nginx configuration for React SPA routing
+RUN echo 'server { \
+    listen 3001; \
+    server_name _; \
+    root /usr/share/nginx/html; \
+    index index.html; \
+    \
+    location / { \
+        try_files $uri $uri/ /index.html; \
+    } \
+    \
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ { \
+        expires 1y; \
+        add_header Cache-Control "public, immutable"; \
+    } \
+    \
+    location /api { \
+        proxy_pass http://backend:3000; \
+        proxy_http_version 1.1; \
+        proxy_set_header Connection ""; \
+        proxy_set_header Host $host; \
+        proxy_set_header X-Real-IP $remote_addr; \
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
 
-# Copy built app from builder
-COPY --from=builder /app/build ./build
+# Copy built React app from builder stage
+COPY --from=builder /app/build ./
 
 # Expose port
 EXPOSE 3001
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3001', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
+  CMD wget --quiet --tries=1 --spider http://localhost:3001/ || exit 1
 
-# Start app
-CMD ["serve", "-s", "build", "-l", "3001"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]

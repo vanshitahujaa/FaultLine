@@ -1,504 +1,75 @@
 {
-  "/test-nginx": [
+  "container-test-1": [
     {
-      "timestamp": "2025-12-29T17:37:47.257Z",
+      "timestamp": "2026-01-02T19:05:54.783Z",
       "type": "kill",
       "status": "scheduled",
       "metadata": {
-        "failureTime": "2025-12-29T17:37:47.257Z"
+        "failureTime": "2026-01-02T19:05:54.783Z"
       }
     },
     {
-      "timestamp": "2025-12-29T17:37:51.823Z",
-      "type": "kill",
-      "status": "failed",
-      "metadata": {
-        "error": "(HTTP code 301) unexpected -  "
-      }
-    }
-  ],
-  "/my-app12": [
-    {
-      "timestamp": "2025-12-29T18:43:42.683Z",
-      "type": "kill",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:43:42.683Z"
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:43:42.711Z",
-      "type": "kill",
-      "status": "failed",
-      "metadata": {
-        "error": "(HTTP code 301) unexpected -  "
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:45:25.111Z",
-      "type": "kill",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:45:25.111Z"
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:45:25.220Z",
-      "type": "kill",
-      "status": "failed",
-      "metadata": {
-        "error": "(HTTP code 301) unexpected -  "
-      }
-    }
-  ],
-  "my-app12": [
-    {
-      "timestamp": "2025-12-29T18:51:42.265Z",
-      "type": "kill",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:51:42.265Z"
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:51:42.407Z",
+      "timestamp": "2026-01-02T19:05:54.915Z",
       "type": "kill",
       "status": "executed",
       "metadata": {
-        "failureTime": "2025-12-29T18:51:42.265Z"
+        "failureTime": "2026-01-02T19:05:54.783Z"
       }
     },
     {
-      "timestamp": "2025-12-29T18:52:31.979Z",
-      "type": "kill",
+      "timestamp": "2026-01-02T19:05:59.977Z",
+      "type": "latency",
       "status": "scheduled",
       "metadata": {
-        "failureTime": "2025-12-29T18:52:31.979Z"
+        "failureTime": "2026-01-02T19:05:59.977Z",
+        "latencyMs": 2000,
+        "duration": 10000
       }
     },
     {
-      "timestamp": "2025-12-29T18:52:32.988Z",
-      "type": "kill",
-      "status": "failed",
-      "metadata": {
-        "error": "(HTTP code 409) unexpected - cannot kill container: my-app12: container 270157c29900aab4a6a19c0253a4e89a79faf4db404a02e7ba566eaf81d2f030 is not running "
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:52:33.006Z",
-      "type": "memory",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:52:33.006Z",
-        "memoryLimit": "256m",
-        "duration": 60000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:33.007Z",
-      "type": "memory",
+      "timestamp": "2026-01-02T19:06:09.979Z",
+      "type": "latency",
       "status": "recovered",
       "metadata": {
-        "failureTime": "2025-12-29T18:52:33.006Z",
-        "recoveryTime": "2025-12-29T18:53:33.007Z",
-        "recoveryDurationMs": 60000
-      }
-    }
-  ],
-  "test-nginx": [
-    {
-      "timestamp": "2025-12-29T18:51:51.262Z",
-      "type": "latency",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:51:51.262Z",
-        "latencyMs": 500,
-        "duration": 30000
+        "failureTime": "2026-01-02T19:05:59.977Z",
+        "recoveryTime": "2026-01-02T19:06:09.979Z",
+        "recoveryDurationMs": 10000
       }
     },
     {
-      "timestamp": "2025-12-29T18:52:32.998Z",
-      "type": "latency",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:52:32.998Z",
-        "latencyMs": 800,
-        "duration": 60000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:52:39.421Z",
+      "timestamp": "2026-01-02T19:15:48.698Z",
       "type": "kill",
       "status": "scheduled",
       "metadata": {
-        "failureTime": "2025-12-29T18:52:39.421Z"
+        "failureTime": "2026-01-02T19:15:48.698Z"
       }
     },
     {
-      "timestamp": "2025-12-29T18:52:39.570Z",
+      "timestamp": "2026-01-02T19:15:48.805Z",
       "type": "kill",
       "status": "executed",
       "metadata": {
-        "failureTime": "2025-12-29T18:52:39.421Z"
+        "failureTime": "2026-01-02T19:15:48.698Z"
       }
     },
     {
-      "timestamp": "2025-12-29T18:53:32.999Z",
-      "type": "latency",
-      "status": "recovered",
-      "metadata": {
-        "failureTime": "2025-12-29T18:52:32.998Z",
-        "recoveryTime": "2025-12-29T18:53:32.999Z",
-        "recoveryDurationMs": 60000
-      }
-    }
-  ],
-  "test-app1": [
-    {
-      "timestamp": "2025-12-29T18:53:13.918Z",
-      "type": "kill",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:13.918Z"
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:14.158Z",
-      "type": "kill",
-      "status": "executed",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:13.918Z"
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:17.170Z",
-      "type": "kill",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:17.170Z"
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:17.277Z",
-      "type": "kill",
-      "status": "failed",
-      "metadata": {
-        "error": "(HTTP code 409) unexpected - cannot kill container: test-app1: container a4fabcb849ae2a2fb81cd44db5c1326cd64a9deb3f3f9abaf2bd58bedd24c75d is not running "
-      }
-    }
-  ],
-  "test-app2": [
-    {
-      "timestamp": "2025-12-29T18:53:16.238Z",
+      "timestamp": "2026-01-02T19:15:53.868Z",
       "type": "latency",
       "status": "scheduled",
       "metadata": {
-        "failureTime": "2025-12-29T18:53:16.238Z",
-        "latencyMs": 500,
-        "duration": 30000
+        "failureTime": "2026-01-02T19:15:53.868Z",
+        "latencyMs": 2000,
+        "duration": 10000
       }
     },
     {
-      "timestamp": "2025-12-29T18:53:16.262Z",
-      "type": "memory",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:16.262Z",
-        "memoryLimit": "512m",
-        "duration": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:19.325Z",
-      "type": "latency",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:19.325Z",
-        "latencyMs": 500,
-        "duration": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:19.336Z",
-      "type": "memory",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:19.336Z",
-        "memoryLimit": "512m",
-        "duration": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:46.238Z",
+      "timestamp": "2026-01-02T19:16:03.870Z",
       "type": "latency",
       "status": "recovered",
       "metadata": {
-        "failureTime": "2025-12-29T18:53:16.238Z",
-        "recoveryTime": "2025-12-29T18:53:46.238Z",
-        "recoveryDurationMs": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:46.270Z",
-      "type": "memory",
-      "status": "recovered",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:16.262Z",
-        "recoveryTime": "2025-12-29T18:53:46.270Z",
-        "recoveryDurationMs": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:49.327Z",
-      "type": "latency",
-      "status": "recovered",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:19.325Z",
-        "recoveryTime": "2025-12-29T18:53:49.327Z",
-        "recoveryDurationMs": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:53:49.337Z",
-      "type": "memory",
-      "status": "recovered",
-      "metadata": {
-        "failureTime": "2025-12-29T18:53:19.336Z",
-        "recoveryTime": "2025-12-29T18:53:49.337Z",
-        "recoveryDurationMs": 30000
-      }
-    }
-  ],
-  "test-faultline-1767034680": [
-    {
-      "timestamp": "2025-12-29T18:58:05.305Z",
-      "type": "kill",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:05.305Z"
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:58:05.426Z",
-      "type": "kill",
-      "status": "executed",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:05.305Z"
-      }
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:17.495Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 10010,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:17.493Z"
-    },
-    {
-      "timestamp": "2025-12-29T18:58:21.444Z",
-      "type": "kill",
-      "status": "recovered",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:05.305Z",
-        "recoveryTime": "2025-12-29T18:58:21.444Z",
-        "recoveryDurationMs": 16139
-      }
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:22.496Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 15012,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:22.495Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:27.498Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 20013,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:27.496Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:32.498Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 25014,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:32.497Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:37.499Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 30015,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:37.498Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:42.499Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 35015,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:42.498Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:47.495Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 40011,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:47.494Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:52.501Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 45017,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:52.500Z"
-    }
-  ],
-  "test-faultline-1767034689": [
-    {
-      "timestamp": "2025-12-29T18:58:12.951Z",
-      "type": "kill",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:12.951Z"
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:58:13.058Z",
-      "type": "kill",
-      "status": "executed",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:12.951Z"
-      }
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:25.135Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 10012,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:25.134Z"
-    },
-    {
-      "timestamp": "2025-12-29T18:58:29.078Z",
-      "type": "kill",
-      "status": "recovered",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:12.951Z",
-        "recoveryTime": "2025-12-29T18:58:29.077Z",
-        "recoveryDurationMs": 16126
-      }
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:30.135Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 15012,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:30.134Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:35.138Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 20015,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:35.137Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:40.150Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 25027,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:40.149Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:45.137Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 30015,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:45.137Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:50.142Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 35019,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:50.141Z"
-    },
-    {
-      "type": "metric",
-      "timestamp": "2025-12-29T18:58:55.138Z",
-      "recovered": true,
-      "strategy": "restart",
-      "mttrMs": 40016,
-      "attemptsNeeded": 1,
-      "recoveryDuration": "2025-12-29T18:58:55.138Z"
-    }
-  ],
-  "test-advanced-1767034697": [
-    {
-      "timestamp": "2025-12-29T18:58:19.918Z",
-      "type": "latency",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:19.918Z",
-        "latencyMs": 500,
-        "duration": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:58:19.929Z",
-      "type": "memory",
-      "status": "scheduled",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:19.929Z",
-        "memoryLimit": "256m",
-        "duration": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:58:49.919Z",
-      "type": "latency",
-      "status": "recovered",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:19.918Z",
-        "recoveryTime": "2025-12-29T18:58:49.919Z",
-        "recoveryDurationMs": 30000
-      }
-    },
-    {
-      "timestamp": "2025-12-29T18:58:49.930Z",
-      "type": "memory",
-      "status": "recovered",
-      "metadata": {
-        "failureTime": "2025-12-29T18:58:19.929Z",
-        "recoveryTime": "2025-12-29T18:58:49.930Z",
-        "recoveryDurationMs": 30000
+        "failureTime": "2026-01-02T19:15:53.868Z",
+        "recoveryTime": "2026-01-02T19:16:03.870Z",
+        "recoveryDurationMs": 10000
       }
     }
   ]
